@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Chakra Petch', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Custom Audio Hardware Styling */
+.font-display {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Authentic M32 Carbon Console Surface Texture */
+.bg-carbon {
+  background-color: #0e1014;
+  background-image: 
+    linear-gradient(45deg, #161920 25%, transparent 25%), 
+    linear-gradient(-45deg, #161920 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #161920 75%), 
+    linear-gradient(-45deg, transparent 75%, #161920 75%);
+  background-size: 6px 6px;
+  background-position: 0 0, 0 3px, 3px -3px, -3px 0px;
+}
+
+/* M32 Brushed Metallic Header & Fader Panels */
+.bg-m32-panel {
+  background: linear-gradient(180deg, #1f232b 0%, #171a21 40%, #111419 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.bg-fader-track {
+  background: linear-gradient(90deg, #07080b 0%, #020304 50%, #07080b 100%);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.95), 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Authentic Midas Sculpted Motorized Fader Cap */
+.fader-cap {
+  background: linear-gradient(180deg, #f1f5f9 0%, #cbd5e1 15%, #94a3b8 35%, #475569 50%, #1e293b 52%, #0f172a 100%);
+  box-shadow: 
+    0 6px 12px rgba(0,0,0,0.85),
+    0 1px 1px rgba(255,255,255,0.8) inset,
+    0 -1px 2px rgba(0,0,0,0.9) inset;
+}
+
+/* M32 Rubber Button Bevels */
+.m32-btn {
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.6),
+    0 1px 0 rgba(255,255,255,0.1) inset,
+    0 -1px 0 rgba(0,0,0,0.4) inset;
+}
+
+.m32-btn:active {
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.8) inset,
+    0 0 4px rgba(0,0,0,0.9);
+}
+
+/* LED glow effects */
+.led-glow-red {
+  box-shadow: 0 0 6px #ef4444, 0 0 2px #f87171;
+}
+
+.led-glow-amber {
+  box-shadow: 0 0 6px #f59e0b, 0 0 2px #fbbf24;
+}
+
+.led-glow-green {
+  box-shadow: 0 0 6px #10b981, 0 0 2px #34d399;
+}
+
+.led-glow-cyan {
+  box-shadow: 0 0 6px #06b6d4, 0 0 2px #22d3ee;
+}
+
+/* Custom sleek scrollbar for channel strips bank */
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232833;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333a4a;
+}
+
+/* Prevent accidental scrolling while touching faders */
+.touch-fader {
+  touch-action: none;
+}
+
+/* Realistic 19" Hardware Rack Finishes */
+.bg-rack-chassis {
+  background: linear-gradient(90deg, #181b22 0%, #101217 3%, #0c0e12 50%, #101217 97%, #181b22 100%);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.8);
+}
+
+.bg-rack-rail {
+  background: linear-gradient(90deg, #1e222a 0%, #2a303c 45%, #181c24 55%, #12151b 100%);
+  border-right: 1px solid #333a49;
+  border-left: 1px solid #0d0f14;
+}
+
+.bg-brushed-black {
+  background: linear-gradient(180deg, #222630 0%, #161820 15%, #111318 85%, #0a0b0f 100%);
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+.bg-brushed-silver {
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 15%, #94a3b8 85%, #64748b 100%);
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px, transparent 1px, transparent 2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.5);
+}
+
+.bg-pultec-blue {
+  background: linear-gradient(180deg, #2e4354 0%, #20313f 20%, #192631 85%, #121c25 100%);
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+.bg-lexicon-beige {
+  background: linear-gradient(180deg, #d8d3c5 0%, #c8c2b2 20%, #b8b1a0 85%, #9e9786 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.6);
+}
+
+.bg-emt-green {
+  background: linear-gradient(180deg, #37463b 0%, #27332b 20%, #1f2822 85%, #141a16 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+.bg-vu-amber {
+  background: radial-gradient(ellipse at 50% 30%, #fff7ed 0%, #fef3c7 45%, #fed7aa 80%, #f97316 100%);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.6), 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.jewel-lamp-red {
+  background: radial-gradient(circle at 35% 35%, #fecaca 0%, #ef4444 45%, #b91c1c 80%, #7f1d1d 100%);
+  box-shadow: 0 0 10px #ef4444, inset 0 1px 2px rgba(255,255,255,0.8);
+}
+
+.jewel-lamp-green {
+  background: radial-gradient(circle at 35% 35%, #a7f3d0 0%, #10b981 45%, #047857 80%, #064e3b 100%);
+  box-shadow: 0 0 10px #10b981, inset 0 1px 2px rgba(255,255,255,0.8);
+}
+
+.screw-head {
+  background: radial-gradient(circle, #cbd5e1 0%, #64748b 60%, #334155 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.bg-fairchild-grey {
+  background: linear-gradient(180deg, #3f4247 0%, #2f3237 20%, #25282d 85%, #1c1e22 100%);
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.8);
+}
+
+.bg-space-age {
+  background: linear-gradient(180deg, #383d47 0%, #292d35 25%, #1e222a 80%, #15181e 100%);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0,0,0,0.9);
+}

@@ -1,0 +1,6 @@
+{
+  "name": "M32 Pro Console - iPad Remote Mixer",
+  "description": "Professional M32 iPad remote mixer control with ultra-responsive multi-touch faders, 4-band/6-band parametric EQ & live RTA, real-time peak/clip meters, secure cloud preset sync, end-to-end encrypted backup, and Wi-Fi OSC connectivity.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
