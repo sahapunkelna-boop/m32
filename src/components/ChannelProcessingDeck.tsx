@@ -480,24 +480,24 @@ export const ChannelProcessingDeck: React.FC<ChannelProcessingDeckProps> = ({
   return (
     <div className="bg-[#101318] border-b border-[#232733] flex flex-col shrink-0 select-none font-mono">
       {/* 1. M32-MIX CHANNEL PROCESSING TOOLBAR & SCRIBBLE STRIP BANNER */}
-      <div className="h-10 bg-[#141720] border-b border-[#222735] px-2.5 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
+      <div className="h-11 bg-[#141720] border-b border-[#222735] px-3 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
         {/* Left: Selected Channel Scribble Strip Preview */}
         <div className="flex items-center gap-2 shrink-0">
           <div
             onClick={onOpenDetailModal}
-            className={`h-7 px-2 rounded-xs border flex items-center gap-1.5 cursor-pointer hover:brightness-110 transition-all ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.glow}`}
+            className={`h-8 px-2.5 rounded-xs border flex items-center gap-2 cursor-pointer hover:brightness-110 transition-all ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.glow}`}
             title="Channel Routing & Scribble Strip Settings"
           >
-            <span className="text-[9px] font-black opacity-75">CH{String(channel.id).padStart(2, '0')}</span>
-            <span className={`text-[11px] font-black ${badgeStyle.text} truncate max-w-[85px]`}>
+            <span className="text-[11px] font-black opacity-80">CH{String(channel.id).padStart(2, '0')}</span>
+            <span className={`text-xs sm:text-sm font-black ${badgeStyle.text} truncate max-w-[100px]`}>
               {channel.name}
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1 text-[9px] text-zinc-400">
-            <span>FADER: <b className="text-zinc-200">{channel.fader <= -85 ? '-∞' : `${channel.fader.toFixed(1)}dB`}</b></span>
+          <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-zinc-300">
+            <span>FADER: <b className="text-white font-mono">{channel.fader <= -85 ? '-∞' : `${channel.fader.toFixed(1)}dB`}</b></span>
             <span>·</span>
-            <span>PAN: <b className="text-zinc-200">{channel.pan === 0 ? 'C' : channel.pan < 0 ? `L${Math.abs(channel.pan)}` : `R${channel.pan}`}</b></span>
+            <span>PAN: <b className="text-white font-mono">{channel.pan === 0 ? 'C' : channel.pan < 0 ? `L${Math.abs(channel.pan)}` : `R${channel.pan}`}</b></span>
           </div>
         </div>
 
@@ -522,10 +522,10 @@ export const ChannelProcessingDeck: React.FC<ChannelProcessingDeckProps> = ({
                   setActiveTab(tab.id);
                   if (isCollapsed) onToggleCollapse(); // expand if collapsed
                 }}
-                className={`px-2.5 py-1 rounded-xs text-[11px] font-black tracking-wider transition-all cursor-pointer border m32-btn ${
+                className={`px-3 py-1.5 rounded-xs text-xs sm:text-[13px] font-black tracking-wider transition-all cursor-pointer border m32-btn ${
                   isActive
                     ? 'bg-amber-500 text-black border-amber-300 shadow-md ring-1 ring-amber-400/50'
-                    : 'bg-[#181c25] text-zinc-400 border-[#262c3c] hover:bg-[#1e2330] hover:text-white'
+                    : 'bg-[#181c25] text-zinc-300 border-[#262c3c] hover:bg-[#1e2330] hover:text-white'
                 }`}
               >
                 {tab.label}
@@ -535,7 +535,7 @@ export const ChannelProcessingDeck: React.FC<ChannelProcessingDeckProps> = ({
         </div>
 
         {/* Right: Quick Tools (Preset loader, Fullscreen EQ, Collapse) */}
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0">
           {/* Quick Preset Selector */}
           <select
             onChange={(e) => {
@@ -547,7 +547,7 @@ export const ChannelProcessingDeck: React.FC<ChannelProcessingDeckProps> = ({
               }
             }}
             value=""
-            className="h-7 px-1.5 text-[10px] font-bold bg-[#171a23] border border-[#2b3142] text-zinc-200 rounded-xs cursor-pointer hover:border-amber-500 focus:outline-none"
+            className="h-8 px-2 text-xs font-bold bg-[#171a23] border border-[#2b3142] text-zinc-200 rounded-xs cursor-pointer hover:border-amber-500 focus:outline-none"
           >
             <option value="" disabled>
               {copiedNotification ? '✓ APPLIED' : '⚡ EQ PRESETS'}
@@ -563,9 +563,9 @@ export const ChannelProcessingDeck: React.FC<ChannelProcessingDeckProps> = ({
           <button
             onClick={onOpenEqModal}
             title="Expand Full-Screen Parametric EQ Editor"
-            className="h-7 px-2 rounded-xs text-[10px] font-bold bg-[#1a1f2c] text-cyan-300 border border-cyan-800/80 hover:bg-cyan-950 flex items-center gap-1 cursor-pointer"
+            className="h-8 px-2.5 rounded-xs text-xs font-bold bg-[#1a1f2c] text-cyan-300 border border-cyan-800/80 hover:bg-cyan-950 flex items-center gap-1 cursor-pointer"
           >
-            <Maximize2 className="w-3 h-3" />
+            <Maximize2 className="w-3.5 h-3.5" />
             <span className="hidden md:inline">EXPAND</span>
           </button>
 

@@ -102,45 +102,45 @@ export const MasterSection: React.FC<MasterSectionProps> = ({
   const segmentDbs = [-48, -42, -36, -30, -24, -18, -14, -10, -7, -4, -2, -1, -0.5, 0];
 
   return (
-    <aside className="w-48 sm:w-56 bg-[#101318] border-l border-[#232733] p-2 flex flex-col justify-between shrink-0 select-none font-mono">
+    <aside className="w-52 sm:w-60 bg-[#101318] border-l border-[#232733] p-2 sm:p-2.5 flex flex-col justify-between shrink-0 select-none font-mono">
       {/* 1. TOP MASTER SECTION: SOLO CLEAR, TALKBACK & MONITOR LEVEL */}
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         {/* Solo Clear & Safety Lock Row */}
         <div className="flex items-center gap-1.5">
           <button
             onClick={onClearAllSolos}
             disabled={!hasActiveSolos}
-            className={`flex-1 py-1 px-2 rounded-xs text-[11px] font-extrabold transition-all cursor-pointer border flex items-center justify-center gap-1 m32-btn ${
+            className={`flex-1 py-1.5 px-2 rounded-xs text-xs sm:text-[13px] font-black transition-all cursor-pointer border flex items-center justify-center gap-1.5 m32-btn ${
               hasActiveSolos
                 ? 'bg-amber-500 text-black border-amber-300 animate-pulse shadow-md shadow-amber-950 led-glow-amber'
                 : 'bg-[#161a22] text-zinc-600 border-[#262c3b] opacity-50 cursor-not-allowed'
             }`}
           >
-            <AlertCircle className="w-3.5 h-3.5" />
+            <AlertCircle className="w-4 h-4" />
             <span>SOLO CLR</span>
           </button>
 
           <button
             onClick={() => setIsLocked(!isLocked)}
-            className={`p-1.5 rounded-xs border transition-all cursor-pointer m32-btn ${
+            className={`p-2 rounded-xs border transition-all cursor-pointer m32-btn ${
               isLocked
                 ? 'bg-red-950 text-red-300 border-red-700 shadow-md'
-                : 'bg-[#161a22] text-zinc-400 border-[#262c3b] hover:text-white'
+                : 'bg-[#161a22] text-zinc-300 border-[#262c3b] hover:text-white'
             }`}
             title={isLocked ? 'Master Fader Locked' : 'Lock Master Fader'}
           >
-            {isLocked ? <Lock className="w-3.5 h-3.5 text-red-400" /> : <Unlock className="w-3.5 h-3.5" />}
+            {isLocked ? <Lock className="w-4 h-4 text-red-400" /> : <Unlock className="w-4 h-4" />}
           </button>
         </div>
 
         {/* Talkback & Phones Monitor */}
         <div className="bg-[#141820] p-2 rounded-sm border border-[#232936] space-y-1.5">
-          <div className="flex items-center justify-between text-[10px]">
-            <div className="flex items-center gap-1 text-zinc-400">
-              <Headphones className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="flex items-center justify-between text-xs font-bold">
+            <div className="flex items-center gap-1.5 text-zinc-300">
+              <Headphones className="w-4 h-4 text-cyan-400" />
               <span>MONITOR</span>
             </div>
-            <span className="text-zinc-200 font-bold">{monitorLevel}%</span>
+            <span className="text-zinc-100 font-black">{monitorLevel}%</span>
           </div>
           <input
             type="range"
@@ -148,25 +148,25 @@ export const MasterSection: React.FC<MasterSectionProps> = ({
             max="100"
             value={monitorLevel}
             onChange={(e) => setMonitorLevel(parseInt(e.target.value, 10))}
-            className="w-full h-1 accent-cyan-400 cursor-pointer"
+            className="w-full h-1.5 accent-cyan-400 cursor-pointer"
           />
 
           <button
             onClick={() => setIsTalkbackActive(!isTalkbackActive)}
-            className={`w-full py-1 rounded-xs text-[10px] font-extrabold flex items-center justify-center gap-1 transition-all border cursor-pointer m32-btn ${
+            className={`w-full py-1.5 rounded-xs text-xs sm:text-[13px] font-black flex items-center justify-center gap-1.5 transition-all border cursor-pointer m32-btn ${
               isTalkbackActive
                 ? 'bg-rose-600 text-white border-rose-400 shadow-md shadow-rose-950 animate-pulse led-glow-red'
-                : 'bg-[#0e1015] text-zinc-400 border-[#232936] hover:text-white'
+                : 'bg-[#0e1015] text-zinc-300 border-[#232936] hover:text-white'
             }`}
           >
-            <Mic className="w-3 h-3" />
+            <Mic className="w-3.5 h-3.5" />
             <span>{isTalkbackActive ? 'TALKBACK ON' : 'TALKBACK'}</span>
           </button>
         </div>
 
         {/* Mute Groups 1 to 6 */}
-        <div className="space-y-1">
-          <span className="text-[9px] font-bold text-zinc-400 block px-0.5">
+        <div className="space-y-1.5">
+          <span className="text-[11px] font-black text-zinc-300 block px-0.5">
             MUTE GROUPS
           </span>
           <div className="grid grid-cols-3 gap-1">
@@ -176,10 +176,10 @@ export const MasterSection: React.FC<MasterSectionProps> = ({
                 <button
                   key={num}
                   onClick={() => onToggleMuteGroup(num)}
-                  className={`py-1 rounded-xs text-[9px] font-bold transition-all border cursor-pointer m32-btn ${
+                  className={`py-1.5 rounded-xs text-xs font-black transition-all border cursor-pointer m32-btn ${
                     isActive
                       ? 'bg-rose-600 text-white border-rose-400 animate-pulse led-glow-red'
-                      : 'bg-[#151921] text-zinc-400 border-[#262c3b] hover:text-zinc-200'
+                      : 'bg-[#151921] text-zinc-300 border-[#262c3b] hover:text-zinc-100'
                   }`}
                 >
                   MUTE {num}
@@ -193,11 +193,11 @@ export const MasterSection: React.FC<MasterSectionProps> = ({
       {/* 2. CENTER & BOTTOM: MAIN STEREO L/R FADER & HI-RES STEREO METERS */}
       <div className="flex flex-col items-center mt-2">
         {/* Main LCD Banner */}
-        <div className="w-full py-1 px-2 rounded-xs bg-[#3b0d11] border border-red-600 mb-2 flex items-center justify-between shadow-inner">
-          <span className="font-display font-bold text-xs text-red-100 tracking-wider">
+        <div className="w-full py-1.5 px-2.5 rounded-xs bg-[#3b0d11] border border-red-600 mb-2 flex items-center justify-between shadow-inner">
+          <span className="font-display font-black text-sm sm:text-[15px] text-red-100 tracking-wider">
             MAIN L/R
           </span>
-          <span className="text-xs font-bold text-red-100">
+          <span className="text-sm sm:text-[15px] font-black text-red-100">
             {mainDb <= -85 ? '-∞' : `${mainDb.toFixed(1)} dB`}
           </span>
         </div>
@@ -205,10 +205,10 @@ export const MasterSection: React.FC<MasterSectionProps> = ({
         {/* Fader & Stereo Meters Container */}
         <div className="w-full h-[220px] sm:h-[300px] flex items-stretch gap-2 px-0.5">
           {/* Decibel Scale */}
-          <div className="flex flex-col justify-between text-[8px] text-zinc-500 py-1 text-right select-none w-4">
+          <div className="flex flex-col justify-between text-[9px] sm:text-[10px] font-mono font-bold text-zinc-500 py-1 text-right select-none w-5">
             <span>+10</span>
             <span>+5</span>
-            <span className="text-zinc-200 font-bold">0</span>
+            <span className="text-zinc-100 font-black">0</span>
             <span>-5</span>
             <span>-10</span>
             <span>-20</span>
@@ -288,10 +288,10 @@ export const MasterSection: React.FC<MasterSectionProps> = ({
         {/* Master Mute Button */}
         <button
           onClick={onToggleMainMute}
-          className={`w-full mt-2 py-1.5 rounded-xs text-xs font-black tracking-wider transition-all border cursor-pointer m32-btn ${
+          className={`w-full mt-2 py-2 rounded-xs text-xs sm:text-sm font-black tracking-wider transition-all border cursor-pointer m32-btn ${
             isMainMuted
               ? 'bg-gradient-to-b from-red-600 to-red-700 text-white border-red-400 shadow-lg shadow-red-950 led-glow-red animate-pulse'
-              : 'bg-[#171a22] text-zinc-400 border-[#2b303d] hover:bg-[#202532] hover:text-white'
+              : 'bg-[#171a22] text-zinc-300 border-[#2b303d] hover:bg-[#202532] hover:text-white'
           }`}
         >
           {isMainMuted ? 'MAIN MUTED' : 'MAIN MUTE'}
