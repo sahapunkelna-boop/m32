@@ -22,7 +22,15 @@
   </head>
   <body class="bg-zinc-950 text-zinc-100 overflow-hidden fixed inset-0 touch-none overscroll-none">
     <div id="root" class="h-full w-full"></div>
-    <script type="module" src="./src/main.tsx"></script>
+    <link rel="stylesheet" href="./assets/index.css">
+    <script type="module">
+      // Dual-Mode Loader: Works in Vite Dev Server AND Static GitHub Pages directly!
+      if (window.location.hostname === 'localhost' || window.location.port === '3000' || window.location.hostname.includes('run.app')) {
+        import('./src/main.tsx');
+      } else {
+        import('./assets/app.js');
+      }
+    </script>
   </body>
 </html>
 

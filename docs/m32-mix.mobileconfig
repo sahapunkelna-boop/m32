@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>FullScreen</key>
+			<true/>
+			<key>IsRemovable</key>
+			<true/>
+			<key>Label</key>
+			<string>M32-Mix</string>
+			<key>PayloadDescription</key>
+			<string>Configures Midas M32-Mix Web Clip on iPad</string>
+			<key>PayloadDisplayName</key>
+			<string>M32-Mix Web Clip</string>
+			<key>PayloadIdentifier</key>
+			<string>com.midas.m32.webclip</string>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+			<key>PayloadUUID</key>
+			<string>A5155C1B-57A1-42C4-9A4B-35E714F844F3</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Precomposed</key>
+			<true/>
+			<key>URL</key>
+			<string>https://ais-pre-fm23xc6oa64hpmj2yhlsmk-222202023746.asia-east1.run.app</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Installs the Midas M32-Mix iPad Remote console directly to your iPad Home Screen.</string>
+	<key>PayloadDisplayName</key>
+	<string>Midas M32-Mix Installer for iPad</string>
+	<key>PayloadIdentifier</key>
+	<string>com.midas.m32.profile</string>
+	<key>PayloadOrganization</key>
+	<string>Midas Pro Audio</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>9DE365F4-A072-475C-9A74-BC4943E4E819</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
