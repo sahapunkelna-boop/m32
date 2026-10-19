@@ -23,7 +23,10 @@ export const IpadInstallGuideModal: React.FC<IpadInstallGuideModalProps> = ({ on
   const [copied, setCopied] = useState(false);
   const [activeMethod, setActiveMethod] = useState<'safari' | 'mobileconfig' | 'ipa'>('safari');
 
-  const appUrl = 'https://ais-pre-fm23xc6oa64hpmj2yhlsmk-222202023746.asia-east1.run.app';
+  const appUrl =
+    typeof window !== 'undefined' && window.location.href && !window.location.href.includes('localhost')
+      ? window.location.href
+      : 'https://ais-pre-fm23xc6oa64hpmj2yhlsmk-222202023746.asia-east1.run.app';
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(appUrl);

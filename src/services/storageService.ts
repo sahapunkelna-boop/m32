@@ -457,10 +457,35 @@ export function createDefaultProfiles(): UserEngineerProfile[] {
 }
 
 class StorageService {
+  private memoryFallback: Map<string, string> = new Map();
+
+  private safeGet(key: string): string | null {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        return window.localStorage.getItem(key);
+      }
+    } catch {
+      // In sandbox, iframe or private browsing
+    }
+    return this.memoryFallback.get(key) || null;
+  }
+
+  private safeSet(key: string, value: string): void {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, value);
+        return;
+      }
+    } catch {
+      // In sandbox or private browsing
+    }
+    this.memoryFallback.set(key, value);
+  }
+
   public loadChannels(): ChannelStripData[] {
     const defaults = createDefaultChannels();
     try {
-      const raw = localStorage.getItem(CHANNELS_KEY);
+      const raw = this.safeGet(CHANNELS_KEY);
       if (raw) {
         const loaded: Partial<ChannelStripData>[] = JSON.parse(raw);
         if (Array.isArray(loaded) && loaded.length > 0) {
@@ -490,7 +515,7 @@ class StorageService {
 
   public saveChannels(channels: ChannelStripData[]) {
     try {
-      localStorage.setItem(CHANNELS_KEY, JSON.stringify(channels));
+      this.safeSet(CHANNELS_KEY, JSON.stringify(channels));
     } catch {
       // ignore
     }
@@ -498,7 +523,7 @@ class StorageService {
 
   public loadPresets(): PresetProfile[] {
     try {
-      const raw = localStorage.getItem(PRESETS_KEY);
+      const raw = this.safeGet(PRESETS_KEY);
       if (raw) {
         return JSON.parse(raw);
       }
@@ -512,7 +537,7 @@ class StorageService {
 
   public savePresets(presets: PresetProfile[]) {
     try {
-      localStorage.setItem(PRESETS_KEY, JSON.stringify(presets));
+      this.safeSet(PRESETS_KEY, JSON.stringify(presets));
     } catch {
       // ignore
     }
@@ -520,7 +545,7 @@ class StorageService {
 
   public loadProfiles(): UserEngineerProfile[] {
     try {
-      const raw = localStorage.getItem(PROFILES_KEY);
+      const raw = this.safeGet(PROFILES_KEY);
       if (raw) {
         return JSON.parse(raw);
       }
@@ -534,7 +559,7 @@ class StorageService {
 
   public saveProfiles(profiles: UserEngineerProfile[]) {
     try {
-      localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+      this.safeSet(PROFILES_KEY, JSON.stringify(profiles));
     } catch {
       // ignore
     }
@@ -542,7 +567,7 @@ class StorageService {
 
   public getActiveProfile(): UserEngineerProfile {
     try {
-      const raw = localStorage.getItem(ACTIVE_PROFILE_KEY);
+      const raw = this.safeGet(ACTIVE_PROFILE_KEY);
       if (raw) {
         return JSON.parse(raw);
       }
@@ -555,18 +580,26 @@ class StorageService {
 
   public setActiveProfile(profile: UserEngineerProfile) {
     try {
-      localStorage.setItem(ACTIVE_PROFILE_KEY, JSON.stringify(profile));
+      this.safeSet(ACTIVE_PROFILE_KEY, JSON.stringify(profile));
     } catch {
       // ignore
     }
   }
 
   public getLastCloudSync(): string {
-    return localStorage.getItem(CLOUD_SYNC_TIME_KEY) || '2026-10-06 00:30 UTC';
+    try {
+      return this.safeGet(CLOUD_SYNC_TIME_KEY) || '2026-10-06 00:30 UTC';
+    } catch {
+      return '2026-10-06 00:30 UTC';
+    }
   }
 
   public setLastCloudSync(timeStr: string) {
-    localStorage.setItem(CLOUD_SYNC_TIME_KEY, timeStr);
+    try {
+      this.safeSet(CLOUD_SYNC_TIME_KEY, timeStr);
+    } catch {
+      // ignore
+    }
   }
 }
 
