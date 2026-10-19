@@ -187,6 +187,36 @@ export default function App() {
     return () => clearInterval(interval);
   }, [network.connected]);
 
+  // Screen WakeLock & Auto-Reactivate on Foreground Return (Prevent iPad sleep during live shows)
+  useEffect(() => {
+    let wakeLockSentinel: any = null;
+    const requestWakeLock = async () => {
+      try {
+        if (typeof navigator !== 'undefined' && 'wakeLock' in navigator) {
+          wakeLockSentinel = await (navigator as any).wakeLock.request('screen');
+        }
+      } catch {
+        // ignore if battery saver prevents lock
+      }
+    };
+    requestWakeLock();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        requestWakeLock();
+        audioEngine.resumeContext();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (wakeLockSentinel) {
+        wakeLockSentinel.release().catch(() => {});
+      }
+    };
+  }, []);
+
   // Channel Updates
   const updateChannel = useCallback((updated: ChannelStripData) => {
     setChannels((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
