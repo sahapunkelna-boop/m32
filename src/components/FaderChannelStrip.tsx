@@ -127,7 +127,7 @@ export const FaderChannelStrip: React.FC<FaderChannelStripProps> = ({
   const [lastTapTime, setLastTapTime] = useState(0);
 
   // If in SOF mode, the fader value is the send level to that bus
-  const currentSend = sendsOnFaderBus
+  const currentSend = sendsOnFaderBus && Array.isArray(channel?.sends)
     ? channel.sends.find((s) => s.busId === sendsOnFaderBus)
     : null;
   const effectiveFaderLinear = sendsOnFaderBus && currentSend

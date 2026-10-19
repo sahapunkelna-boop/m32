@@ -138,11 +138,18 @@ export const ChannelProcessingDeck: React.FC<ChannelProcessingDeckProps> = ({
   const [copiedNotification, setCopiedNotification] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const badgeStyle = colorBadges[channel.color] || colorBadges.black;
+
+  if (!channel) {
+    return null;
+  }
+
+  const badgeStyle = (channel.color && colorBadges[channel.color]) || colorBadges.black;
 
   // Selected EQ Band
   const activeBand =
-    channel.eqBands.find((b) => b.id === selectedEqBandId) || channel.eqBands[0];
+    (channel.eqBands && channel.eqBands.find((b) => b.id === selectedEqBandId)) ||
+    (channel.eqBands && channel.eqBands[0]) ||
+    { id: 1, name: 'Low', enabled: true, type: 'peq', frequency: 100, gain: 0, q: 1.0 };
 
   // Helper conversions for Canvas EQ coordinates
   const minFreq = 20;

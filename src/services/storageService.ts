@@ -458,25 +458,34 @@ export function createDefaultProfiles(): UserEngineerProfile[] {
 
 class StorageService {
   public loadChannels(): ChannelStripData[] {
+    const defaults = createDefaultChannels();
     try {
       const raw = localStorage.getItem(CHANNELS_KEY);
       if (raw) {
-        const loaded: ChannelStripData[] = JSON.parse(raw);
-        if (Array.isArray(loaded) && loaded.length >= 72) {
-          return loaded;
-        } else if (Array.isArray(loaded) && loaded.length > 0) {
-          const defaults = createDefaultChannels();
-          const merged = [...loaded, ...defaults.slice(loaded.length)];
-          this.saveChannels(merged);
-          return merged;
+        const loaded: Partial<ChannelStripData>[] = JSON.parse(raw);
+        if (Array.isArray(loaded) && loaded.length > 0) {
+          const sanitized: ChannelStripData[] = defaults.map((defCh, idx) => {
+            const saved = loaded[idx];
+            if (!saved || typeof saved !== 'object') return defCh;
+            return {
+              ...defCh,
+              ...saved,
+              color: saved.color || defCh.color,
+              name: saved.name || defCh.name,
+              eqBands: Array.isArray(saved.eqBands) && saved.eqBands.length > 0 ? saved.eqBands : defCh.eqBands,
+              sends: Array.isArray(saved.sends) && saved.sends.length === 16 ? saved.sends : defCh.sends,
+              gate: saved.gate && typeof saved.gate === 'object' ? { ...defCh.gate, ...saved.gate } : defCh.gate,
+              compressor: saved.compressor && typeof saved.compressor === 'object' ? { ...defCh.compressor, ...saved.compressor } : defCh.compressor,
+            };
+          });
+          return sanitized;
         }
       }
     } catch {
       // ignore
     }
-    const defaultChannels = createDefaultChannels();
-    this.saveChannels(defaultChannels);
-    return defaultChannels;
+    this.saveChannels(defaults);
+    return defaults;
   }
 
   public saveChannels(channels: ChannelStripData[]) {
