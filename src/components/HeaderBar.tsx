@@ -17,6 +17,7 @@ import {
   Activity,
   Layers,
   Sparkles,
+  Tablet,
 } from 'lucide-react';
 import { NetworkConnectionState, ClipAlertEvent, UserEngineerProfile } from '../types/mixer';
 
@@ -46,6 +47,7 @@ interface HeaderBarProps {
   isDeckCollapsed?: boolean;
   onToggleDeckCollapse?: () => void;
   onOpenSpecs?: () => void;
+  onOpenInstall?: () => void;
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({
@@ -72,6 +74,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   isDeckCollapsed = false,
   onToggleDeckCollapse,
   onOpenSpecs,
+  onOpenInstall,
 }) => {
   const [isFullscreen, setIsFullscreen] = React.useState(false);
 
@@ -130,6 +133,16 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         >
           <Sparkles className="w-3 h-3 text-amber-400" />
           <span>SPECS</span>
+        </button>
+
+        {/* INSTALL ON IPAD BUTTON */}
+        <button
+          onClick={onOpenInstall}
+          className="px-2.5 py-1 rounded-xs bg-cyan-500/15 text-cyan-300 border border-cyan-500/60 hover:bg-cyan-500/30 text-[11px] font-black cursor-pointer transition-all m32-btn flex items-center gap-1 shadow-sm"
+          title="วิธีติดตั้ง M32-Mix ลงบน iPad เป็นแอปเต็มหน้าจอ 100%"
+        >
+          <Tablet className="w-3 h-3 text-cyan-400" />
+          <span className="hidden sm:inline">INSTALL IPAD</span>
         </button>
 
         {/* SCENES Button with Current Scene Name */}

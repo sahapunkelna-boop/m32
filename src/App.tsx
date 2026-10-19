@@ -16,6 +16,7 @@ import { ChannelOverviewTab } from './components/ChannelOverviewTab';
 import { EffectsRackView } from './components/EffectsRackView';
 import { RecorderLiveView } from './components/RecorderLiveView';
 import { ConsoleSpecsModal } from './components/ConsoleSpecsModal';
+import { IpadInstallGuideModal } from './components/IpadInstallGuideModal';
 import {
   ChannelStripData,
   PresetProfile,
@@ -58,6 +59,7 @@ export default function App() {
   const [isNetworkModalOpen, setIsNetworkModalOpen] = useState(false);
   const [isClipDrawerOpen, setIsClipDrawerOpen] = useState(false);
   const [isSpecsModalOpen, setIsSpecsModalOpen] = useState(false);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
 
   // UI Modes & Toggles
   const [beginnerMode, setBeginnerMode] = useState(false);
@@ -354,6 +356,7 @@ export default function App() {
         isDeckCollapsed={isDeckCollapsed}
         onToggleDeckCollapse={() => setIsDeckCollapsed((prev) => !prev)}
         onOpenSpecs={() => setIsSpecsModalOpen(true)}
+        onOpenInstall={() => setIsInstallModalOpen(true)}
       />
 
       {/* 2. CONDITIONAL VIEW: MIXER (Faders) vs CHANNEL vs METERS vs ROUTING */}
@@ -612,6 +615,11 @@ export default function App() {
             setIsNetworkModalOpen(true);
           }}
         />
+      )}
+
+      {/* iPad Installation Guide & MobileConfig Modal */}
+      {isInstallModalOpen && (
+        <IpadInstallGuideModal onClose={() => setIsInstallModalOpen(false)} />
       )}
     </div>
   );
